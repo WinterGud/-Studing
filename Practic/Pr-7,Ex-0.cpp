@@ -6,7 +6,7 @@ using namespace std;
 int main() {
 
     int length;
-    cout << "Ввудіть розмірність масиву: ";
+    cout << "Ввeдіть розмірність масиву: ";
     cin >> length;
     int* Arr = new int[length];
     int k = length / 2;
