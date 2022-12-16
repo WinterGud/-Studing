@@ -1,0 +1,115 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm> 
+
+char fileName[] = "input_data";
+struct Marks {
+    float mark1, mark2, mark3, mark4, mark5;
+};
+struct Students {
+    char surname[20], name[20];
+    int year_birthday, year_vstup;
+    Marks mark;
+    float ser;
+};
+const int numOfStudents = 2;
+Students Student[numOfStudents] = {};
+
+
+
+
+void enterStudents(char* fileName);
+void readStudentsList(char* fileName);
+void sort(char* fileName);
+void createMassiveOfStudents(char* fileName);
+
+int main(){
+
+    
+
+    enterStudents(fileName);
+    createMassiveOfStudents(fileName);
+    
+    
+    std::cout << std::endl;
+    system("pause");
+    std::cout << std::endl;
+    return 0;
+}
+
+
+void enterStudents(char* fileName) {
+    std::ofstream openAndWrite(fileName, std::ios::out);
+    if (!openAndWrite)
+    {
+        std::cout << "Неможливо відкрити файл input_data.txt\n"; \
+            //return 1;
+    }
+    for (int i = 0; i < numOfStudents; i++)
+    {
+        /*
+        std::cout << "sur_name: ";
+        std::cin >> Student[i].surname;
+        std::cout << "name: ";
+        std::cin >> Student[i].name;
+        std::cout << "year_birthday: ";
+        std::cin >> Student[i].year_birthday;
+        std::cout << "year_vstup: ";
+        std::cin >> Student[i].year_vstup;
+        std::cout << "bal1: ";
+        std::cin >> Student[i].mark.mark1;
+        std::cout << "bal2: ";
+        std::cin >> Student[i].mark.mark2;
+        std::cout << "bal3: ";
+        std::cin >> Student[i].mark.mark3;
+        std::cout << "bal4: ";
+        std::cin >> Student[i].mark.mark4;
+        std::cout << "bal5: ";
+        std::cin >> Student[i].mark.mark5;*/
+        
+        Student[i].ser = (Student[i].mark.mark1 + Student[i].mark.mark2 + Student[i].mark.mark3 + Student[i].mark.mark4 + Student[i].mark.mark5) / 5;
+        openAndWrite.write((char*)&Student[i], sizeof(struct Students));
+    }
+}
+
+void createMassiveOfStudents(char* fileName) {
+    std::ifstream readAndSave(fileName, std::ios::in);
+    if (!readAndSave)
+    {
+        std::cout << "Неможливо відкрити файл input_data.txt\n"; \
+            //return 1;
+    }
+    //readAndSave.seekg(0, std::ios_base::end);
+    //std::cout << readAndSave.tellg();
+    for (int i = 0; i < numOfStudents + 1; i++)
+    {
+        readAndSave.get(Student[i].name, ' ');
+        std::cout << Student[i].name;
+    }
+    std::cout << readAndSave.tellg();
+}
+/*
+void readStudentsList(char* fileName, int numOfStudents) {
+    std::ifstream readAndSave("fileName", std::ios::in);
+    if (!readAndSave)
+    {
+        std::cout << "Неможливо відкрити файл output_data.txt\n"; \
+            //return 1;
+    }
+
+    for (int i = 1; i <= numOfStudents; i++)
+    {
+        readAndSave.read((char*)&studik, sizeof(struct Studendts));
+        readAndSave.read((char*)&studik, std::streamsize(studik.name));
+        //readAndSave >> studik.bal1 >> studik.bal2 >> studik.bal3 >> studik.bal4 >> studik.bal5 >> studik.ser;
+        //std::cout << studik.surname << " " << studik.name << " " << studik.year_birthday << " " << studik.year_vstup << " " << studik.bal1 << " " << studik.bal2 << " " << studik.bal3 << " " << studik.bal4 << " " << studik.bal5 << std::endl<< "Середній бал: " << studik.ser << std::endl;
+        //std::wcout << studik.name << std::endl;
+        std::cout.precision(2);
+        std::cout.setf(std::ios::fixed);
+        std::cout << readAndSave.gcount();
+    }
+}
+*/
+void sort(char* fileName) {
+    
+}
