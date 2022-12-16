@@ -1,0 +1,25 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main(){
+
+    std::string aboba{};
+    int boba = 12341123;
+    std::ofstream openAndWrite("input_data", std::ios::out);
+    if (!openAndWrite)
+    {
+        std::cout << "Неможливо відкрити файл input_data.txt\n"; \
+           return 1;
+    }
+
+    std::cout << "Enter Text: ";
+    std::cin >> aboba;
+    int k = strlen(aboba);
+
+    openAndWrite << aboba;
+    std::cout << std::endl;
+    system("pause");
+    std::cout << std::endl;
+    return 0;
+}
