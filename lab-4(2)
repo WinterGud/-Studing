@@ -1,25 +1,35 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
-int main(){
+const int numOfStudents = 6;
 
-    std::string aboba{};
-    int boba = 12341123;
-    std::ofstream openAndWrite("input_data", std::ios::out);
-    if (!openAndWrite)
-    {
-        std::cout << "Неможливо відкрити файл input_data.txt\n"; \
-           return 1;
-    }
+int main() {
+	
+	std::fstream file("input_data", std::ios::in | std::ios::out);
+	if (!file)
+	{
+		std::cout << "ERROR";
+		return 1;
+	}
 
-    std::cout << "Enter Text: ";
-    std::cin >> aboba;
-    int k = strlen(aboba);
+	char text[] = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis excepturi corporis cum! Illo laborum ex unde suscipit at aperiam ad expedita fugiat dolore pariatur. Voluptatem earum impedit veniam aliquam dolorem, dignissimos quia delectus ea illum in, cupiditate debitis quae. Officiis explicabo vitae aspernatur dolorum velit, amet beatae. Aut dignissimos modi delectus, veniam velit accusamus in autem veritatis dolorem eligendi quis quas quo recusandae numquam placeat nisi magni consequuntur assumenda maxime dicta ipsam. Sunt, tenetur temporibus. Molestias odit porro excepturi, eligendi inventore a necessitatibus unde eaque aperiam exercitationem non rem sed tenetur quis dolorum praesentium? Libero rerum laborum praesentium distinctio pariatur?";;
+	//std::cout << strlen(text);
+	int fs = 0;
+	for (int i = 0; i < strlen(text); i++)
+	{
+		if (file.ignore(strlen(text), 'f'))
+		{
+			fs += 4;
+		}
+	}
+	std::cout << fs;
+	//std::cin >> text;
+	//std::cin.getline(text, 1000);
+	file << text << std::endl;
+	file.close();
 
-    openAndWrite << aboba;
-    std::cout << std::endl;
-    system("pause");
-    std::cout << std::endl;
-    return 0;
+
+	return 0;
 }
