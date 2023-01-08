@@ -14,7 +14,7 @@ int main() {
     double* arrNext = new double[num];
     for (int i = 0; i < num; i++)
     {
-        arrNext[i] = arr[i] + arr[i + 2];
+        arrNext[i + 1] = arr[i] + arr[i + 2];
     }
     //я незнаю як воно запустилось -_-
 
